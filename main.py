@@ -8,18 +8,10 @@ def get_link(link):
     link_get = requests.get(link)
     soup = BeautifulSoup(link_get.text, 'lxml')
     tovar = soup.find('div', class_='title_wrapper').find('h1').text
-    high_price = soup.find('div', class_='price-tovar').find('div', class_='price-tovar-main').find('div',
-                                                                                                    class_="price"
-                                                                                                           "-tovar"
-                                                                                                           "-new "
-                                                                                                           "is_desktop"
-                                                                                                           "").text
+    high_price = soup.find('div', class_='price-tovar').find('div', class_='price-tovar-main').find('div', class_="price-tovar-new is_desktop").text
     try:
         low_price = soup.find('div', class_='price-tovar').find('div', class_='price-tovar-main').find('div',
-                                                                                                       class_='price'
-                                                                                                              '-tovar'
-                                                                                                              '-old'
-                                                                                                              '').text
+                                                                                                       class_='price-tovar-old').text
     except:
         low_price = 0
     description = soup.find('div', class_='description_wrapper').text
